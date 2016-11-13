@@ -1,0 +1,43 @@
+html {
+  font-family: sans-serif;
+}
+h1 {
+  display: block;
+  margin: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: #333;
+}
+a {
+  color: yellowgreen;
+  font-weight: 300;
+  text-decoration: none;
+}
+.container {
+  margin: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+textarea {
+  font-size: 1
+  px;
+}
+.actions {
+  width: 100px;
+  margin: 0 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.actions > button {
+  display: block;
+  margin-bottom: 20px;
+  height: 40px;
+  font-size: 14px;
+  color: white;
+  background: yellowgreen;
+  border: 0;
+  cursor: pointer;
+}

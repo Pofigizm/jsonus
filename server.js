@@ -77,9 +77,7 @@ app.post('/tojson', bodyParser.text(), (req, res) => {
     .catch(() => res.status(400).send('Wrong body'))
 })
 
-app.all('*', (req, res) => {
-  res.status(404).end()
-})
+app.use(express.static('static'))
 
 app.listen(port, (error) => {
   if (error) {

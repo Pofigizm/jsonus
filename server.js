@@ -20,30 +20,45 @@ global.HTMLAnchorElement = window.HTMLAnchorElement
 
 // convert functions
 
-const json2html = (json) => {
+const json2html = json => new Promise((res, rej) => {
   debug('json2html processing function')
-  const html = stateToHTML(
-    convertFromRaw(json),
-  )
-  return html
-}
-
-const html2json = (html) => {
-  debug('html2json processing function')
-  const json = convertToRaw(
-    ContentState.createFromBlockArray(
-      convertFromHTML(html),
-    ),
-  )
-  return {
-    ...json,
-    blocks: json.blocks.map((el) => {
-      const res = { ...el }
-      delete res.key
-      return res
-    }),
+  try {
+    const sjson = {
+      entityMap: {},
+      ...json,
+    }
+    const html = stateToHTML(
+      convertFromRaw(sjson),
+    )
+    res(html)
+  } catch (err) {
+    debug('json2html processing error:', err, json)
+    rej()
   }
-}
+})
+
+const html2json = html => new Promise((res, rej) => {
+  debug('html2json processing function')
+  try {
+    const shtml = html.replace(/^\s*$/g, '&nbsp;')
+    const json = convertToRaw(
+      ContentState.createFromBlockArray(
+        convertFromHTML(shtml),
+      ),
+    )
+    res({
+      ...json,
+      blocks: json.blocks.map((el) => {
+        const r = { ...el }
+        delete r.key
+        return r
+      }),
+    })
+  } catch (err) {
+    debug('html2json processing error:', err, html)
+    rej()
+  }
+})
 
 // http server
 
@@ -51,23 +66,15 @@ const app = express()
 const port = '8080'
 
 app.post('/tohtml', bodyParser.json(), (req, res) => {
-  if (typeof req.body !== 'object') {
-    debug('Wrong body type of /tohtml')
-    res.status(400).send('Wrong body type')
-    return
-  }
-
-  res.status(200).send(json2html(req.body))
+  json2html(req.body)
+    .then(r => res.status(200).send(r))
+    .catch(() => res.status(400).send('Wrong body'))
 })
 
 app.post('/tojson', bodyParser.text(), (req, res) => {
-  if (typeof req.body !== 'string') {
-    debug('Wrong body type of /tojson')
-    res.status(400).send('Wrong body type')
-    return
-  }
-
-  res.status(200).send(html2json(req.body))
+  html2json(req.body)
+    .then(r => res.status(200).send(r))
+    .catch(() => res.status(400).send('Wrong body'))
 })
 
 app.all('*', (req, res) => {

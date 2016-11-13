@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "scripts": {
     "lint": "eslint *.js **/*.js",
-    "start": "node server/index.js"
+    "start": "DEBUG=jsonus:* node index.js"
   },
   "dependencies": {
     "babel-core": "6.18.2",

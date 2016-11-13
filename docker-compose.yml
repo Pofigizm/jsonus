@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  jsonus:
+    build: .
+    ports:
+      - '80:8080'
+    container_name: lj-jsonus
+    environment:
+      - NODE_ENV=production
+      - DEBUG=jsonus:*
+    networks:
+      - lj-network
+
+networks:
+  lj-network:
+    driver: bridge

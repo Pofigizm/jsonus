@@ -39,6 +39,7 @@
     "parser": "babel-eslint",
     "extends": "airbnb",
     "rules": {
+      "import/extensions": 0,
       "import/no-unresolved": 0,
       "import/no-extraneous-dependencies": 0,
       "global-require": 0,
@@ -51,7 +52,8 @@
       "angular/document-service": 0,
       "angular/window-service": 0,
       "angular/typecheck-object": 0,
-      "angular/typecheck-string": 0
+      "angular/typecheck-string": 0,
+      "angular/log": 0
     }
   }
 }

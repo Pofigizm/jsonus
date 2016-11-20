@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "scripts": {
     "lint": "eslint *.js **/*.js",
-    "start": "DEBUG=jsonus:* node index.js"
+    "start": "DEBUG=jsonus:* node index.js",
+    "build": "docker build -t pofigizm/jsonus . && docker push pofigizm/jsonus"
   },
   "dependencies": {
     "babel-core": "6.18.2",

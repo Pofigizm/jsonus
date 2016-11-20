@@ -7,19 +7,22 @@
         type: 'header-one',
       },
       {
-        text: 'Here\'s some text, it\'s useful More text, some inline styling for some element',
+        text: 'Here\'s some text, it\'s useful',
+      },
+      {
+        text: 'More text, some inline styling for some element',
         inlineStyleRanges: [
           {
-            offset: 53,
+            offset: 23,
             length: 7,
             style: 'BOLD'
           },
           {
-            offset: 65,
+            offset: 35,
             length: 4,
             style: 'ITALIC'
           }
-        ]
+        ],
       }
     ]
   }, null, 2)

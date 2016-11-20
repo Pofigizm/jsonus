@@ -13,7 +13,7 @@
     "babel-runtime": "6.18.0",
     "body-parser": "1.15.2",
     "debug": "2.3.2",
-    "draft-js": "0.9.1",
+    "draft-js": "https://github.com/Pofigizm/draft-js.git#a442f24d573931dce10c3b043dee18e4fa86b810",
     "draft-js-export-html": "0.5.1",
     "esutils": "^2.0.2",
     "express": "4.14.0",
